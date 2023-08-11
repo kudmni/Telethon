@@ -768,7 +768,8 @@ class DownloadMethods:
             # :tl:`PhotoPathSize` is used for animated stickers preview, and the thumb is actually
             # a SVG path of the outline. Users expect thumbnails to be JPEG files, so pretend this
             # thumb size doesn't actually exist (#1655).
-            if isinstance(thumbs[i], types.PhotoPathSize):
+            # The same applies to the :tl:`VideoSizeEmojiMarkup` and :tl:`VideoSizeStickerMarkup`
+            if isinstance(thumbs[i], (types.PhotoPathSize, types.VideoSizeEmojiMarkup, types.VideoSizeStickerMarkup)):
                 thumbs.pop(i)
 
         if thumb is None:
